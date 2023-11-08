@@ -6,12 +6,15 @@ import { GET_CHARACTERS } from '../../utils/queries';
 import { Pagination, Row, Col } from 'antd';
 import { CharacterCard } from '../../components/CharacterCard';
 import { Character } from '../../utils/types';
+import { Loader } from '../../components/Loader';
 
 export const HomePage = () => {
-
   const { loading, error, data } = useQuery(GET_CHARACTERS, { client });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return <Loader />
+  }
+
   if (error) return <p>Error: {error.message}</p>;
 
   const characters = data.characters.results;
@@ -27,7 +30,7 @@ export const HomePage = () => {
         <Row gutter={[35, 30]} className="home__cards">
           {characters.map((character: Character) => (
             <Col xs={24} sm={12} key={character.id}>
-              <CharacterCard character={character}/>
+              <CharacterCard character={character} addtitonalClassName={false}>{}</CharacterCard>
             </Col>
           ))}
         </Row>

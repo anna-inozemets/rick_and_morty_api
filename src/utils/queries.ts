@@ -10,7 +10,7 @@ export const GET_CHARACTERS = gql`
         id
         name
         status
-        gender
+        species
         image
         location {
           name

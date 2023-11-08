@@ -1,0 +1,10 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+
+  & div {
+    transform: scale(1.5);
+  }
+}
