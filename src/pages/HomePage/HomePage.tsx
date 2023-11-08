@@ -22,8 +22,6 @@ export const HomePage = () => {
 
   const characters = data.characters.results;
 
-  console.log(characters);
-
   return (
     <section className="section section--home home">
       <div className="container">

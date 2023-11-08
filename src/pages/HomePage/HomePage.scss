@@ -1,7 +1,77 @@
+@import '../../utils/variables.scss';
+
 .home {
-  padding: 40px 0 15px;
+  padding: 40px 0 30px;
 
   &__cards {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+  }
+
+  & ul {
+    margin: 0 auto;
+    width: max-content;
+
+    & li.ant-pagination-item {
+      margin-right: 10px;
+      font-family: 'Roboto', sans-serif;
+      background-color: $secondly-grey-color;
+      border-color: $secondly-grey-color;
+      box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.4);
+      -webkit-box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.4);
+      -moz-box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.4);
+      transition: transform 0.4s linear;
+
+      & a {
+        color: $primary-light-color;
+        transition: all 0.4s linear;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    & li.ant-pagination-item-active,
+    & li.ant-pagination-prev,
+    & li.ant-pagination-next {
+      background-color: $primary-light-color;
+      border-color: $primary-light-color;
+      box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.5);
+      -moz-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.5);
+      transition: all 0.4s linear;
+
+      & a {
+        color: $primary-dark-color;
+        transition: all 0.4s linear;
+
+        &:hover {
+          color: $primary-dark-color;
+        }
+      }
+
+      &:hover {
+        background-color: $primary-light-color;
+        border-color: $primary-light-color;
+      }
+    }
+
+    & li.ant-pagination-next {
+      margin-left: 5px;
+    }
+
+    & li.ant-pagination-disabled {
+      margin-right: 15px;
+      background-color: $primary-grey-color;
+
+      & a {
+        color: $main-background-color;
+        opacity: 0.6;
+      }
+
+      &:hover {
+        background-color: $primary-grey-color;
+      }
+    }
   }
 }
