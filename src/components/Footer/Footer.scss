@@ -1,0 +1,55 @@
+@import '../../utils/variables.scss';
+
+.footer {
+  padding: 50px 0 70px;
+  background-color: $primary-dark-color;
+  color: $primary-grey-color;
+  text-align: center;
+
+  &__description {
+    margin-bottom: 40px;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  &__incode-link {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 60px 10px rgba(255, 255, 255, 0.7);
+    -webkit-box-shadow: 0px 0px 60px 10px rgba(255, 255, 255, 0.7);
+    -moz-box-shadow: 0px 0px 60px 10px rgba(255, 255, 255, 0.7);
+    transition: transform 0.4s linear;
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: max-content;
+    gap: 30px;
+    margin: 0 auto 35px;
+
+    &__item {
+      font-size: 20px;
+      color: $primary-grey-color;
+      transition: color 0.4s linear;
+
+      &:hover {
+        color: $primary-light-color;
+      }
+    }
+  }
+
+  &__year {
+    font-weight: 400;
+  }
+}
