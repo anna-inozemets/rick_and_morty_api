@@ -1,0 +1,52 @@
+@import '../../utils/variables.scss';
+
+.character-card {
+  display: flex;
+  background-color: $secondly-grey-color;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &__photo {
+    max-width: 230px;
+  }
+
+  &__text {
+    padding: 15px;
+    color: $primary-light-color;
+    font-weight: 400;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: $primary-light-color;
+    transition: text-decoration 0.4s linear, color 0.4s linear, transform 0.4s linear;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+  }
+
+  &__point {
+    height: 7px;
+    width: 7px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  &__subtitle {
+    margin: 20px 0 10px;
+    font-weight: 500;
+    color: $primary-grey-color;
+  }
+}
