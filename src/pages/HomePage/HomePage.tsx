@@ -7,6 +7,7 @@ import { Pagination, Row, Col } from 'antd';
 import { CharacterCard } from '../../components/CharacterCard';
 import { Character } from '../../utils/types';
 import { Loader } from '../../components/Loader';
+import { Error } from '../../components/Error';
 
 export const HomePage = () => {
   const { loading, error, data } = useQuery(GET_CHARACTERS, { client });
@@ -15,7 +16,9 @@ export const HomePage = () => {
     return <Loader />
   }
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) {
+    return <Error />
+  }
 
   const characters = data.characters.results;
 

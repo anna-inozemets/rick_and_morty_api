@@ -1,0 +1,12 @@
+@import '../../utils/variables.scss';
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  font-size: 48px;
+  line-height: 50px;
+  text-align: center;
+  color: $primary-light-color;
+}

@@ -4,6 +4,6 @@ import './Loader.scss';
 
 export const Loader = () => (
   <article className="section section--loader loader">
-    <Spin tip="Loading" size="large" />
+    <Spin size="large" />
   </article>
 );
