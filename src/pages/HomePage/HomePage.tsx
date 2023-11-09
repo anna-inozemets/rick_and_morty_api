@@ -1,7 +1,9 @@
 import React from 'react';
 import './HomePage.scss';
 import { useQuery } from '@apollo/client';
-import { client } from '../../utils/apollo';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPage } from '../../features/pagination';
+import { RootState } from '../../app/store';
 import { GET_CHARACTERS } from '../../utils/queries';
 import { Pagination, Row, Col } from 'antd';
 import { CharacterCard } from '../../components/CharacterCard';
@@ -11,7 +13,10 @@ import { Error } from '../../components/Error';
 import { Filter } from '../../components/Filter';
 
 export const HomePage = () => {
-  const { loading, error, data } = useQuery(GET_CHARACTERS, { client });
+  const dispatch = useDispatch();
+  const page = useSelector((state: RootState) => state.pagination.page);
+
+  const { loading, error, data } = useQuery(GET_CHARACTERS, { variables: { page } });
 
   if (loading) {
     return <Loader />
@@ -23,8 +28,7 @@ export const HomePage = () => {
 
   const info = data.characters.info;
   const characters = data.characters.results;
-
-  console.log(info);
+  const pagesCount = Math.ceil(info.count / 20);
 
   return (
     <section className="section section--home home">
@@ -40,7 +44,12 @@ export const HomePage = () => {
           ))}
         </Row>
 
-        <Pagination defaultCurrent={1} total={info.count} />
+        <Pagination
+          defaultCurrent={page}
+          total={info.count}
+          pageSize={20}
+          onChange={(newPage) => dispatch(setPage(newPage))}
+        />
       </div>
     </section>
   )

@@ -10,9 +10,7 @@ import { Error } from '../../components/Error';
 export const CharacterPage = () => {
   const { id } = useParams();
 
-  const { loading, error, data } = useQuery(GET_CHARACTER, {
-    variables: { id },
-  });
+  const { loading, error, data } = useQuery(GET_CHARACTER, { variables: { id } });
 
   if (loading) {
     return <Loader />

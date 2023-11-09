@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const GET_CHARACTERS = gql`
-  query GetCharacters {
-    characters(page: 1) {
+  query GetCharacters($page: Int!) {
+    characters(page: $page) {
       info {
         count,
         pages,
@@ -36,18 +36,3 @@ export const GET_CHARACTER = gql`
     }
   }
 `;
-
-// export const GET_CHARACTER = gql`
-//   query GetCharacter($id: String!) {
-//     character(id: $id) {
-//       id
-//       name
-//       status
-//       gender
-//       image
-//       type
-//     }
-//   }
-// `;
-
-
