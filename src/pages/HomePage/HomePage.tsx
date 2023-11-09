@@ -8,6 +8,7 @@ import { CharacterCard } from '../../components/CharacterCard';
 import { Character } from '../../utils/types';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
+import { Filter } from '../../components/Filter';
 
 export const HomePage = () => {
   const { loading, error, data } = useQuery(GET_CHARACTERS, { client });
@@ -20,13 +21,16 @@ export const HomePage = () => {
     return <Error />
   }
 
+  const info = data.characters.info;
   const characters = data.characters.results;
+
+  console.log(info);
 
   return (
     <section className="section section--home home">
       <div className="container">
         <div className="home__filter">
-
+          <Filter />
         </div>
         <Row gutter={[35, 30]} className="home__cards">
           {characters.map((character: Character) => (
@@ -36,7 +40,7 @@ export const HomePage = () => {
           ))}
         </Row>
 
-        <Pagination defaultCurrent={1} total={50} />
+        <Pagination defaultCurrent={1} total={info.count} />
       </div>
     </section>
   )

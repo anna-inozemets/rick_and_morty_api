@@ -3,6 +3,10 @@
 .home {
   padding: 40px 0 30px;
 
+  &__filter {
+    margin-bottom: 20px;
+  }
+
   &__cards {
     margin-bottom: 30px;
   }
@@ -73,5 +77,9 @@
         background-color: $primary-grey-color;
       }
     }
+  }
+
+  & .ant-select-selector {
+    display: none;
   }
 }
