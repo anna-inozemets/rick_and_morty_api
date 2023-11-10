@@ -43,6 +43,22 @@ export const FilterForm = () => {
     dispatch(setOptionVisibility(!isOptionVisible));
   };
 
+  // useEffect(() => {
+  //   console.log(
+  //     currentOptionsSelected,
+  //     characters,
+  //     locations,
+  //     episodes,
+  //     words,
+  //   )
+  // }, [
+  //   currentOptionsSelected,
+  //   characters,
+  //   locations,
+  //   episodes,
+  //   words,
+  // ])
+
   useEffect(() => {
     if (charactersIds.length > 0) {
       dispatch(fetchCharacersById(charactersIds));

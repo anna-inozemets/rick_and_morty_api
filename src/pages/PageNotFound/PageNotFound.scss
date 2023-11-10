@@ -1,0 +1,31 @@
+@import '../../utils/variables.scss';
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  padding: 60px 0;
+  font-size: 48px;
+  line-height: 50px;
+  text-align: center;
+  color: $primary-light-color;
+
+  & a {
+    font-size: 36px;
+    padding: 5px 15px;
+    border-radius: 9px;
+    background-color: $primary-light-color;
+    border: 1px solid $primary-light-color;
+    color: $primary-dark-color;
+    text-decoration: none;
+    transition: background-color 0.4s linear, color 0.4s linear, transform 0.4s linear;
+
+    &:hover {
+      background-color: $primary-dark-color;
+      color: $primary-light-color;
+      transform: translateY(-2px);
+    }
+  }
+}
