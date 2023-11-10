@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './HomePage.scss';
-import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../../features/pagination';
-import { RootState } from '../../app/store';
-import { GET_CHARACTERS } from '../../utils/queries';
+import { AppDispatch, RootState } from '../../app/store';
 import { Pagination, Row, Col } from 'antd';
 import { CharacterCard } from '../../components/CharacterCard';
 import { Character } from '../../utils/types';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
 import { Filter } from '../../components/Filter';
+import { fetchCharacters } from '../../features/characters';
 
 export const HomePage = () => {
-  const dispatch = useDispatch();
-  const page = useSelector((state: RootState) => state.pagination.page);
+  const dispatch = useDispatch<AppDispatch>();
+  const { page } = useSelector((state: RootState) => state.pagination);
+  const { characters, count, loading, error } = useSelector((state: RootState) => state.characters);
 
-  const { loading, error, data } = useQuery(GET_CHARACTERS, { variables: { page } });
+  useEffect(() => {
+    dispatch(fetchCharacters(page));
+  }, [page]);
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (error) {
-    return <Error />
+    return <Error />;
   }
-
-  const info = data.characters.info;
-  const characters = data.characters.results;
-  const pagesCount = Math.ceil(info.count / 20);
 
   return (
     <section className="section section--home home">
@@ -46,7 +44,7 @@ export const HomePage = () => {
 
         <Pagination
           defaultCurrent={page}
-          total={info.count}
+          total={count}
           pageSize={20}
           onChange={(newPage) => dispatch(setPage(newPage))}
         />

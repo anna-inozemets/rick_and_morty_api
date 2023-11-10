@@ -42,4 +42,25 @@ export interface FormState {
   locations: LocationQuery;
   episodes: EpisodeQuery;
   words: WordsQuery;
+  charactersIds: number[];
 }
+
+export interface CharacterState {
+  characters: Character[];
+  count: number;
+  loading: boolean;
+  error: boolean;
+}
+
+export interface FilterVariables {
+  characterName: string;
+  characterStatus: string;
+  characterSpecies: string;
+  characterType: string;
+  characterGender: string;
+  locationName: string;
+  locationType: string;
+  locationDimension: string;
+  episodeName: string;
+  episodeEpisode: string;
+};

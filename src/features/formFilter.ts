@@ -1,11 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import {
   FormState,
   CharacterQuery,
   LocationQuery,
   EpisodeQuery,
-  WordsQuery
+  WordsQuery,
+  FilterVariables
 } from '../utils/types';
+import { fetchCharacersIds as fetchCharacersIdsHelper } from '../utils/apiFunctions';
 
 const initialState: FormState = {
   isOptionVisible: false,
@@ -14,7 +16,30 @@ const initialState: FormState = {
   locations: { name: '', type: '', dimension: '' },
   episodes: { name: '', episodes: '' },
   words: { query: '' },
+  charactersIds: [],
 };
+
+export const fetchCharactersIds = createAsyncThunk(
+  'charactersIds/fetchCharactersIds',
+  async (variables: FilterVariables, { rejectWithValue, dispatch }) => {
+    try {
+      // dispatch(setLoading(true));
+
+      const data = await fetchCharacersIdsHelper(variables);
+
+      dispatch(setCharactersIds(data));
+
+      return data;
+    } catch (error) {
+      // dispatch(setLoading(false));
+      // dispatch(setError(true));
+
+      return rejectWithValue(error);
+    } finally {
+      // dispatch(setLoading(false))
+    }
+  }
+);
 
 const formFilterSlice = createSlice({
   name: 'formFilter',
@@ -41,6 +66,9 @@ const formFilterSlice = createSlice({
     resetFilters() {
       return initialState;
     },
+    setCharactersIds: (state, action) => {
+      state.charactersIds = action.payload;
+    },
   },
 });
 
@@ -52,5 +80,6 @@ export const {
   updateEpisodes,
   updateWords,
   resetFilters,
+  setCharactersIds
 } = formFilterSlice.actions;
 export default formFilterSlice.reducer;

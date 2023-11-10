@@ -38,6 +38,12 @@
     font-weight: 400;
     font-size: 17px;
     color: $primary-dark-color;
+    cursor: pointer;
+    transition: background-color 0.4s linear;
+
+    &:hover {
+      background-color: #e7e7e7;
+    }
 
     & label {
       display: flex;
