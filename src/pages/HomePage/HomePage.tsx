@@ -11,23 +11,30 @@ import { Error } from '../../components/Error';
 import { Filter } from '../../components/Filter';
 import { fetchCharacters, setCharactersToRender, setIsSpecificCharacter } from '../../features/characters';
 import { MehOutlined } from '@ant-design/icons';
+import { resetFilters } from '../../features/formFilter';
 
 export const HomePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { page } = useSelector((state: RootState) => state.pagination);
   const { characters, charactersToRender, count, loading, error } = useSelector((state: RootState) => state.characters);
+  const { normalizedCharactersIds } = useSelector((state: RootState) => state.formFilter);
 
   useEffect(() => {
     dispatch(setIsSpecificCharacter(false));
+    dispatch(fetchCharacters(1));
+    dispatch(resetFilters());
   }, [])
 
   useEffect(() => {
-    if (characters.length > 20) {
-      dispatch(setCharactersToRender(page));
-    } else {
+    if (normalizedCharactersIds.length === 0) {
       dispatch(fetchCharacters(page));
+    } else {
+      dispatch(setCharactersToRender({
+        data: characters,
+        page,
+      }));
     }
-  }, [page, characters]);
+  }, [page, characters, normalizedCharactersIds]);
 
   if (loading) {
     return <Loader />;

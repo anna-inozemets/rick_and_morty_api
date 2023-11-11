@@ -13,26 +13,26 @@ export interface Character {
 }
 
 export interface CharacterQuery {
-  name: string,
-  status: string,
-  species: string,
-  type: string,
-  gender: string,
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
 }
 
 export interface LocationQuery {
-  name: string,
-  type: string,
-  dimension: string,
+  name: string;
+  type: string;
+  dimension: string;
 }
 
 export interface EpisodeQuery {
-  name: string,
-  episodes: string,
+  name: string;
+  episodes: string;
 }
 
 export interface WordsQuery {
-  query: string,
+  query: string;
 }
 
 export interface FormState {
@@ -47,8 +47,9 @@ export interface FormState {
     location: number[],
     episode: number[],
   };
-  loading: boolean,
-  error: boolean,
+  normalizedCharactersIds: number[],
+  loading: boolean;
+  error: boolean;
 }
 
 export interface CharactersState {
@@ -57,7 +58,7 @@ export interface CharactersState {
   count: number;
   loading: boolean;
   error: boolean;
-  isSpecificCharacter: boolean,
+  isSpecificCharacter: boolean;
 }
 
 export interface FilterVariables {
@@ -74,7 +75,7 @@ export interface FilterVariables {
 }
 
 export interface HistoryState {
-  isHistoryVisible: boolean,
+  isHistoryVisible: boolean;
   history: {
     keyWords: string,
     characters: string,

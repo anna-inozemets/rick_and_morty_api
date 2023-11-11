@@ -23,7 +23,12 @@ export const fetchCharacters = createAsyncThunk(
       const data = await fetchCharacersHelper(page);
 
       dispatch(setCharacters(data.results));
-      dispatch(setCharactersToRender(data.results));
+
+      dispatch(setCharactersToRender({
+        data: data.results,
+        page,
+      }));
+
       dispatch(setCount(data.info.count));
 
       return data;
@@ -39,10 +44,12 @@ export const fetchCharacters = createAsyncThunk(
 );
 
 export const fetchCharacersById = createAsyncThunk(
-  'characters/fetchCharacters',
+  'charactersById/fetchCharactersById',
   async (ids: number[], { rejectWithValue, dispatch }) => {
     try {
       dispatch(setLoading(true));
+
+      console.log(ids)
 
       const data = await fetchCharacersByIdHelper(ids);
 
@@ -69,12 +76,12 @@ const charactersSlice = createSlice({
       state.characters = action.payload;
     },
     setCharactersToRender: (state, action) => {
-      const startIndex = (action.payload - 1) * 20;
+      const { data, page } = action.payload;
+    
+      const startIndex = (page - 1) * 20;
       const endIndex = startIndex + 20;
-
-      state.charactersToRender = state.characters.length > 20
-        ? state.characters.slice(startIndex, endIndex)
-        : state.characters;
+    
+      state.charactersToRender = data.slice(startIndex, endIndex);
     },
     setCount: (state, action) => {
       state.count = action.payload;

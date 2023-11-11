@@ -7,7 +7,8 @@ import {
   updateLocations,
   updateEpisodes,
   updateWords,
-  fetchCharactersIds
+  fetchCharactersIds,
+  setNormalizedCharactersIds
 } from '../../features/formFilter';
 import { fetchCharacersById } from '../../features/characters';
 import { RootState, AppDispatch } from '../../app/store';
@@ -33,7 +34,8 @@ export const FilterForm = () => {
     words,
     charactersIds,
     loading,
-    error
+    error,
+    normalizedCharactersIds
   } = useSelector((state: RootState) => state.formFilter);
   const { query } = words
   const {
@@ -105,32 +107,29 @@ export const FilterForm = () => {
   ]);
 
   useEffect(() => {
-    const neededIds = []
+    const combinedCharacterIds = [];
   
     if (currentOptionsSelected.includes('character')) {
-      neededIds.push(...charactersIds.character)
+      combinedCharacterIds.push(...charactersIds.character);
     }
-
+  
     if (currentOptionsSelected.includes('location')) {
-      neededIds.push(...charactersIds.location)
+      combinedCharacterIds.push(...charactersIds.location);
     }
-
+  
     if (currentOptionsSelected.includes('episode')) {
-      neededIds.push(...charactersIds.episode)
+      combinedCharacterIds.push(...charactersIds.episode);
     }
-
+  
     if (currentOptionsSelected.length === 0) {
-      neededIds.push(...charactersIds.character, ...charactersIds.location, ...charactersIds.episode)
+      combinedCharacterIds.push(...charactersIds.character, ...charactersIds.location, ...charactersIds.episode);
     }
-
-    if (charactersIds.character.length !== 0
-      || charactersIds.location.length !== 0
-      || charactersIds.episode.length !== 0
-    ) {
-      dispatch(fetchCharacersById(neededIds));
+  
+    if (combinedCharacterIds.length > 0) {
+      dispatch(setNormalizedCharactersIds(combinedCharacterIds));
+      dispatch(fetchCharacersById(combinedCharacterIds));
     }
-    
-  }, [charactersIds])
+  }, [currentOptionsSelected, charactersIds]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();

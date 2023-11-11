@@ -21,6 +21,7 @@ const initialState: FormState = {
     location: [],
     episode: [],
   },
+  normalizedCharactersIds: [],
   loading: false,
   error: false,
 };
@@ -96,6 +97,9 @@ const formFilterSlice = createSlice({
     },
     setError: (state, action) => {
       state.error = action.payload;
+    },
+    setNormalizedCharactersIds: (state, action) => {
+      state.normalizedCharactersIds = [...state.normalizedCharactersIds, ...action.payload]
     }
   },
 });
@@ -110,6 +114,7 @@ export const {
   resetFilters,
   setCharactersIds,
   setLoading,
-  setError
+  setError,
+  setNormalizedCharactersIds
 } = formFilterSlice.actions;
 export default formFilterSlice.reducer;

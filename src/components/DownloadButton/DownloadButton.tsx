@@ -9,16 +9,19 @@ export const DownloadButton = () => {
   const { charactersToRender, isSpecificCharacter } = useSelector((state: RootState) => state.characters);
   const handleDownload = () => {
     if (!isSpecificCharacter) {
-      const normalizedCharacterStr = charactersToRender
-        .map(characterToRender => (
-          JSON.stringify(characterToRender)
-        ))
-        .join('\n');
-      const csvContent = `data:text/csv;charset=utf-8, ${normalizedCharacterStr}`;
-      const encodedUri = encodeURI(csvContent);
+      const csvRows = charactersToRender.map(characterToRender => {
+        const { id, name, status, species, image, location, episode } = characterToRender;
+        const firstEpisodeName = episode[0].name || '';
+  
+        return `${id},${name},${status},${species},${image},${location.name},${firstEpisodeName}`;
+      }).join('\n');
+
+      const blob = new Blob([csvRows], { type: 'text/csv;charset=utf-8,' });
+      const objUrl = URL.createObjectURL(blob)
+
       const downloadLink = document.createElement('a');
 
-      downloadLink.setAttribute('href', encodedUri);
+      downloadLink.setAttribute('href', objUrl);
       downloadLink.setAttribute('download', 'characters.csv');
       document.body.appendChild(downloadLink);
       downloadLink.click();
