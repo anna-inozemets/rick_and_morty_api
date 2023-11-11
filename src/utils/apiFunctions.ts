@@ -1,6 +1,6 @@
 import { client } from './apollo';
 import { FilterVariables } from './types';
-import { GET_CHARACTERS, GET_FILTRED_CHARACTERS_ID, GET_FILTERED_CHARACTERS  } from './queries';
+import { GET_CHARACTERS, GET_FILTRED_CHARACTERS_ID, GET_FILTERED_CHARACTERS } from './queries';
 
 export const fetchCharacers = async (page: number) => {
   try {

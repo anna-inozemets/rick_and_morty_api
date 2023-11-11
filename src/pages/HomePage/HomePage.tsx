@@ -9,13 +9,17 @@ import { Character } from '../../utils/types';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
 import { Filter } from '../../components/Filter';
-import { fetchCharacters, setCharactersToRender } from '../../features/characters';
+import { fetchCharacters, setCharactersToRender, setIsSpecificCharacter } from '../../features/characters';
 import { MehOutlined } from '@ant-design/icons';
 
 export const HomePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { page } = useSelector((state: RootState) => state.pagination);
   const { characters, charactersToRender, count, loading, error } = useSelector((state: RootState) => state.characters);
+
+  useEffect(() => {
+    dispatch(setIsSpecificCharacter(false));
+  }, [])
 
   useEffect(() => {
     if (characters.length > 20) {

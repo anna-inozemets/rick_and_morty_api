@@ -6,7 +6,7 @@ import { client } from './utils/apollo';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import './index.scss';
-import App from './App';
+import { App } from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

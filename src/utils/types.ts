@@ -51,12 +51,13 @@ export interface FormState {
   error: boolean,
 }
 
-export interface CharacterState {
+export interface CharactersState {
   characters: Character[];
   charactersToRender: Character[];
   count: number;
   loading: boolean;
   error: boolean;
+  isSpecificCharacter: boolean,
 }
 
 export interface FilterVariables {
@@ -70,4 +71,15 @@ export interface FilterVariables {
   locationDimension: string;
   episodeName: string;
   episodeEpisode: string;
-};
+}
+
+export interface HistoryState {
+  isHistoryVisible: boolean,
+  history: {
+    keyWords: string,
+    characters: string,
+    location: string,
+    episode: string,
+    name: string,
+  }[],
+}

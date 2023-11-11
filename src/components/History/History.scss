@@ -1,0 +1,89 @@
+@import '../../utils/variables.scss';
+
+.history {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 3;
+
+  &__content {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    max-width: 420px;
+    height: 80vh;
+    background-color: $primary-light-color;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    padding: 15px 15px 45px 15px;
+
+    & h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &__content-items {
+    height: 65vh;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+
+  &__content-item {
+    width: 95%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $primary-grey-color;
+    margin-bottom: 15px;
+    font-weight: 400;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    & p {
+      opacity: 0.85;
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    & span {
+      display: block;
+      margin-bottom: 10px;
+      opacity: 0.6;
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid $primary-light-color;
+    background-color: $primary-light-color;
+    border-radius: 9px;
+    color: #1976D2;
+    text-transform: uppercase;
+    transition: border-color 0.4s linear;
+
+    &:hover {
+      border-color: #1976D2;
+    }
+  }
+}

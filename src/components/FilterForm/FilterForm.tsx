@@ -19,6 +19,7 @@ import { FilterInputs } from '../FilterInputs';
 import { wordsInput, characterInputs, locationInputs, episodesInputs, areValuesEmpty } from '../../utils/helpers';
 import './FilterForm.scss';
 import { Error } from '../Error';
+import { updateHistory } from '../../features/history';
 
 export const FilterForm = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -151,6 +152,20 @@ export const FilterForm = () => {
       locationDimension,
       episodeName: normalizedEpisodeName,
       episodeEpisode
+    }));
+
+    dispatch(updateHistory({
+      keyWords: query,
+      characters: [characterName, characterStatus, characterSpecies, characterType, characterGender]
+        .filter((value: string) => value.length !== 0)
+        .join(', '),
+      location: [locationName, locationType, locationDimension]
+        .filter((value: string) => value.length !== 0)
+        .join(', '),
+      episode: [episodeName, episodeEpisode]
+        .filter((value: string) => value.length !== 0)
+        .join(', '),
+      name: '',
     }));
   };
 

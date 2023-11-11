@@ -6,9 +6,14 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { CharacterPage } from './pages/CharacterPage';
 import { PageNotFound } from './pages/PageNotFound';
+import { FabButton } from './components/FabButton';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store';
+import { History } from './components/History';
 
+export const App = () => {
+  const { isHistoryVisible } = useSelector((state: RootState) => state.history);
 
-function App() {
   return (
     <>
       <Header />
@@ -22,10 +27,10 @@ function App() {
             <Route path=":id" element={<CharacterPage />} />
           </Route>
         </Routes>
+        <FabButton />
+        {isHistoryVisible && (<History />)}
       </main>
       <Footer />
     </>
   );
 }
-
-export default App;

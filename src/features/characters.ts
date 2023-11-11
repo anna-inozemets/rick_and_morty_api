@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { CharacterState } from '../utils/types';
+import { CharactersState } from '../utils/types';
 import {
   fetchCharacers as fetchCharacersHelper,
   fetchCharacersById as fetchCharacersByIdHelper,
 } from '../utils/apiFunctions';
 
-const initialState: CharacterState = {
+const initialState: CharactersState = {
   characters: [],
   charactersToRender: [],
   count: 0,
   loading: false,
   error: false,
+  isSpecificCharacter: false,
 };
 
 export const fetchCharacters = createAsyncThunk(
@@ -84,8 +85,18 @@ const charactersSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    setIsSpecificCharacter: (state, action) => {
+      state.isSpecificCharacter = action.payload
+    }
   },
 });
 
-export const { setCharacters, setCharactersToRender, setCount, setLoading, setError } = charactersSlice.actions;
+export const {
+  setCharacters,
+  setCharactersToRender,
+  setCount,
+  setLoading,
+  setError,
+  setIsSpecificCharacter,
+} = charactersSlice.actions;
 export default charactersSlice.reducer;
