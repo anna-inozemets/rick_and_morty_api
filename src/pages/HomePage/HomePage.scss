@@ -7,6 +7,13 @@
     margin-bottom: 20px;
   }
 
+  &__empty {
+    margin: 0 auto;
+    color: $primary-light-color;
+    font-size: 48px;
+    line-height: 50px;
+  }
+
   &__cards {
     margin-bottom: 30px;
   }

@@ -10,6 +10,9 @@ export const matchColorPoint = (status: string) => {
     return '#9e9e9e';
   }
 };
+export const areValuesEmpty = (...args: string[]) => (
+  args.every(item => item.length === 0)
+);
 
 export const wordsInput = [
   { id: 'keyQuery', key: 'query', placeholder: 'Add key words to find' }

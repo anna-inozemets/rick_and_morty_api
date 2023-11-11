@@ -7,6 +7,7 @@ import {
 
 const initialState: CharacterState = {
   characters: [],
+  charactersToRender: [],
   count: 0,
   loading: false,
   error: false,
@@ -21,6 +22,7 @@ export const fetchCharacters = createAsyncThunk(
       const data = await fetchCharacersHelper(page);
 
       dispatch(setCharacters(data.results));
+      dispatch(setCharactersToRender(data.results));
       dispatch(setCount(data.info.count));
 
       return data;
@@ -44,7 +46,7 @@ export const fetchCharacersById = createAsyncThunk(
       const data = await fetchCharacersByIdHelper(ids);
 
       dispatch(setCharacters(data));
-      dispatch(setCount(data.lenght));
+      dispatch(setCount(data.length));
 
       return data;
     } catch (error) {
@@ -56,7 +58,7 @@ export const fetchCharacersById = createAsyncThunk(
       dispatch(setLoading(false))
     }
   }
-)
+);
 
 const charactersSlice = createSlice({
   name: 'characters',
@@ -64,6 +66,14 @@ const charactersSlice = createSlice({
   reducers: {
     setCharacters: (state, action) => {
       state.characters = action.payload;
+    },
+    setCharactersToRender: (state, action) => {
+      const startIndex = (action.payload - 1) * 20;
+      const endIndex = startIndex + 20;
+
+      state.charactersToRender = state.characters.length > 20
+        ? state.characters.slice(startIndex, endIndex)
+        : state.characters;
     },
     setCount: (state, action) => {
       state.count = action.payload;
@@ -77,5 +87,5 @@ const charactersSlice = createSlice({
   },
 });
 
-export const { setCharacters, setCount, setLoading, setError } = charactersSlice.actions;
+export const { setCharacters, setCharactersToRender, setCount, setLoading, setError } = charactersSlice.actions;
 export default charactersSlice.reducer;

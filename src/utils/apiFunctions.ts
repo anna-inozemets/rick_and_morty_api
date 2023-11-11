@@ -22,35 +22,34 @@ export const fetchCharacersIds = async (variables: FilterVariables) => {
       variables,
     });
 
-    const characterIds = result.data?.characters?.results
+    const characterIds = (result.data.characters.results || [])
       .map((character: any) => character.id)
-      .filter((item:number | undefined) => {
-        if (item) {
-          return item
-        }
+      .filter(Boolean)
+      .filter((id: number, index: number, arr: number[]) => {
+        const firstIndex = arr.indexOf(id);
 
-        return;
-      })
-    const locationIds = result.data?.locations?.results
-      .map((location: any) => location.residents.id)
-      .filter((item:number | undefined) => {
-        if (item) {
-          return item
-        }
+        return firstIndex === index;
+      });
+    const episodeIds = result.data.episodes.results
+      .flatMap((item: any) => item.characters.map((character: any) => character.id))
+      .filter((id: number, index: number, arr: number[]) => {
+        const firstIndex = arr.indexOf(id);
 
-        return;
-      })
-    const episodeIds = result.data?.episodes?.results
-      .map((episode: any) => episode.characters.id)
-      .filter((item:number | undefined) => {
-        if (item) {
-          return item
-        }
+        return firstIndex === index;
+      });
+    const locationIds = result.data.locations.results
+      .flatMap((item: any) => item.residents.map((resident: any) => resident.id))
+      .filter((id: number, index: number, arr: number[]) => {
+        const firstIndex = arr.indexOf(id);
 
-        return;
-      })
+        return firstIndex === index;
+      });
 
-    const allIds = [ ...characterIds, ...locationIds, ...episodeIds ];
+    const allIds = {
+      character: characterIds,
+      location: locationIds,
+      episode: episodeIds
+    }
 
     return allIds;
   } catch (error) {

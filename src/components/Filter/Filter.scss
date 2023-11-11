@@ -36,5 +36,15 @@
       background-color: $main-background-color;
       color: $primary-light-color;
     }
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: #c9c9c9;
+      border-color: #c9c9c9;
+
+      &:hover {
+        color: $main-background-color;
+      }
+    }
   }
 }

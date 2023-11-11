@@ -42,11 +42,18 @@ export interface FormState {
   locations: LocationQuery;
   episodes: EpisodeQuery;
   words: WordsQuery;
-  charactersIds: number[];
+  charactersIds: {
+    character: number[],
+    location: number[],
+    episode: number[],
+  };
+  loading: boolean,
+  error: boolean,
 }
 
 export interface CharacterState {
   characters: Character[];
+  charactersToRender: Character[];
   count: number;
   loading: boolean;
   error: boolean;
