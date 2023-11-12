@@ -1,5 +1,6 @@
 ## 🚀 Description
 Explore and discover the world of Rick and Morty characters [here](https://anna-inozemets.github.io/rick_and_morty_api/).
+<br />
 You can do:
 - view all characters from from the Rick and Morty cartoon
 - view detailed information about one specific character
