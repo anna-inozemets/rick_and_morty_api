@@ -1,4 +1,5 @@
 @import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
 
 .error {
   display: flex;
@@ -9,4 +10,28 @@
   line-height: 50px;
   text-align: center;
   color: $primary-light-color;
+}
+
+@include onSmallDesktop {
+  .error {
+    padding: 50px 0;
+    font-size: 40px;
+    line-height: 42px;
+  }
+}
+
+@include onTablet {
+  .error {
+    padding: 35px 0;
+    font-size: 36px;
+    line-height: 38px;
+  }
+}
+
+@include onMobile {
+  .error {
+    padding: 20px 0;
+    font-size: 24px;
+    line-height: 26px;
+  }
 }

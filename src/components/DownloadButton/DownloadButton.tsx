@@ -1,5 +1,4 @@
 import React from 'react';
-import './DownloadButton.scss';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';

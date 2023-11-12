@@ -1,6 +1,7 @@
 @import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
 
-.not-found {
+.not-found__content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,6 +27,45 @@
       background-color: $primary-dark-color;
       color: $primary-light-color;
       transform: translateY(-2px);
+    }
+  }
+}
+
+@include onSmallDesktop {
+  .not-found__content {
+    gap: 40px;
+    padding: 50px 0;
+    font-size: 40px;
+    line-height: 42px;
+  
+    & a {
+      font-size: 30px;
+    }
+  }
+}
+
+@include onTablet {
+  .not-found {
+    gap: 30px;
+    padding: 35px 0;
+    font-size: 36px;
+    line-height: 38px;
+  
+    & a {
+      font-size: 24px;
+    }
+  }
+}
+
+@include onMobile {
+  .not-found__content {
+    gap: 20px;
+    padding: 20px 0;
+    font-size: 24px;
+    line-height: 26px;
+  
+    & a {
+      font-size: 20px;
     }
   }
 }

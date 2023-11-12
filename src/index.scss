@@ -1,3 +1,5 @@
+@import './utils/mixins.scss';
+
 *,
 *::before,
 *::after {
@@ -9,4 +11,10 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 16px;
+}
+
+@include onTablet {
+  body {
+    font-size: 13px;
+  }
 }

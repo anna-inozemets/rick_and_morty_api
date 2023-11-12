@@ -1,5 +1,4 @@
 import React from 'react';
-import './HistoryButton.scss';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { setIsHistoryVisible } from '../../features/history';
 import { useDispatch, useSelector } from 'react-redux';

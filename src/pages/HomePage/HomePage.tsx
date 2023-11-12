@@ -26,7 +26,7 @@ export const HomePage = () => {
   }, [])
 
   useEffect(() => {
-    if (normalizedCharactersIds.length === 0) {
+    if (normalizedCharactersIds !== null && normalizedCharactersIds.length === 0) {
       dispatch(fetchCharacters(page));
     } else {
       dispatch(setCharactersToRender({
@@ -53,7 +53,7 @@ export const HomePage = () => {
           </div>
         )}
         <Row gutter={[35, 30]} className="home__cards">
-          {characters.length === 0 ? (
+          {normalizedCharactersIds === null ? (
             <p className="home__empty">There are no characters <span><MehOutlined /></span></p>
           ) : (
             charactersToRender.map((character: Character) => (

@@ -1,11 +1,12 @@
 @import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
 
 .header {
+  padding-bottom: 110px;
   background-image: url('../../images/header__background.svg');
   background-size: contain;
   background-position: center bottom;
   background-repeat: no-repeat;
-  padding-bottom: 110px;
 
   &__link {
     margin: 10px 0;
@@ -24,5 +25,43 @@
     font-size: 100px;
     text-align: center;
     color: $primary-dark-color;
+  }
+}
+
+@include onSmallDesktop {
+  .header {
+    padding-bottom: 80px;
+
+    &__title {
+      margin-top: 80px;
+      font-size: 70px;
+    }
+  }
+}
+
+@include onTablet {
+  .header {
+    padding-bottom: 50px;
+  
+    &__link {
+      height: 30px;
+      width: 30px;
+    }
+  
+    &__title {
+      margin-top: 60px;
+      font-size: 50px;
+    }
+  }
+}
+
+@include onMobile {
+  .header {
+    padding-bottom: 20px;
+
+    &__title {
+      margin-top: 20px;
+      font-size: 30px;
+    }
   }
 }

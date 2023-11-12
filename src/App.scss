@@ -1,4 +1,5 @@
 @import './utils/variables.scss';
+@import './utils/mixins.scss';
 
 a {
   display: block;
@@ -25,4 +26,22 @@ button {
 
 .section {
   background-color: $main-background-color;
+}
+
+@include onSmallDesktop {
+  .container {
+    padding: 0 60px;
+  }
+}
+
+@include onTablet {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@include onMobile {
+  .container {
+    padding: 0 20px;
+  }
 }

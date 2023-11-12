@@ -10,6 +10,7 @@ import {
 import { fetchCharacersIds as fetchCharacersIdsHelper } from '../utils/apiFunctions';
 
 const initialState: FormState = {
+  isFormVisible: false,
   isOptionVisible: false,
   currentOptionsSelected: [],
   characters: { name: '', status: '', species: '', type: '', gender: '' },
@@ -52,6 +53,9 @@ const formFilterSlice = createSlice({
   name: 'formFilter',
   initialState,
   reducers: {
+    setIsFormVisible: (state, action) => {
+      state.isFormVisible = action.payload;
+    },
     setOptionVisibility(state, action: PayloadAction<boolean>) {
       state.isOptionVisible = action.payload;
     },
@@ -99,12 +103,13 @@ const formFilterSlice = createSlice({
       state.error = action.payload;
     },
     setNormalizedCharactersIds: (state, action) => {
-      state.normalizedCharactersIds = [...state.normalizedCharactersIds, ...action.payload]
+      state.normalizedCharactersIds = action.payload;
     }
   },
 });
 
 export const {
+  setIsFormVisible,
   setOptionVisibility,
   updateOptionsSelected,
   updateCharacters,

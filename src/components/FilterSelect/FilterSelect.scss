@@ -1,0 +1,65 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
+
+.filter {
+  &__select-options {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+  }
+
+  &__select-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    padding: 15px;
+    width: 100%;
+    max-width: 215px;
+    min-width: 215px;
+    background-color: $primary-light-color;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: $primary-dark-color;
+    cursor: pointer;
+    transition: background-color 0.4s linear;
+
+    &:hover {
+      background-color: #e7e7e7;
+    }
+
+    & label {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      & span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 17px;
+      }
+
+      & span:last-child {
+        padding: 0;
+      }
+
+      &:where(.css-dev-only-do-not-override-2i2tap).ant-checkbox-wrapper:after {
+        display: none;
+      }
+    }
+  }
+}
+
+@include onTablet {
+  .filter__select-option {
+    min-height: 40px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

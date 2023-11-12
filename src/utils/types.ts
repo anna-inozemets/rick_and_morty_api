@@ -36,6 +36,7 @@ export interface WordsQuery {
 }
 
 export interface FormState {
+  isFormVisible: boolean;
   isOptionVisible: boolean;
   currentOptionsSelected: string[];
   characters: CharacterQuery;
@@ -47,7 +48,7 @@ export interface FormState {
     location: number[],
     episode: number[],
   };
-  normalizedCharactersIds: number[],
+  normalizedCharactersIds: null | number[],
   loading: boolean;
   error: boolean;
 }

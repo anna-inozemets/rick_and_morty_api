@@ -49,8 +49,6 @@ export const fetchCharacersById = createAsyncThunk(
     try {
       dispatch(setLoading(true));
 
-      console.log(ids)
-
       const data = await fetchCharacersByIdHelper(ids);
 
       dispatch(setCharacters(data));
