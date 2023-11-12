@@ -1,18 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetFilters, setIsFormVisible } from '../../features/formFilter';
-import { FilterForm } from '../FilterForm';
-import { AppDispatch, RootState } from '../../app/store';
-
-import './Filter.scss';
-import classNames from 'classnames';
 import { fetchCharacters } from '../../features/characters';
 import { setPage } from '../../features/pagination';
+import { AppDispatch, RootState } from '../../app/store';
+import classNames from 'classnames';
+import { FilterForm } from '../FilterForm';
+import './Filter.scss';
 
 export const Filter = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    isFormVisible, currentOptionsSelected, words } = useSelector((state: RootState) => state.formFilter);
+    isFormVisible, currentOptionsSelected, words,
+  } = useSelector((state: RootState) => state.formFilter);
 
   const handleClick = () => {
     dispatch(setIsFormVisible(!isFormVisible))

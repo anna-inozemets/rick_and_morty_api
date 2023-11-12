@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.scss';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { RootState } from './app/store';
+import { useSelector } from 'react-redux';
 import { HomePage } from './pages/HomePage';
 import { CharacterPage } from './pages/CharacterPage';
 import { PageNotFound } from './pages/PageNotFound';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { FabButton } from './components/FabButton';
-import { useSelector } from 'react-redux';
-import { RootState } from './app/store';
 import { History } from './components/History';
+import './App.scss';
 
 export const App = () => {
   const { isHistoryVisible } = useSelector((state: RootState) => state.history);

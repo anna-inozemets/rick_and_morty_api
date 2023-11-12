@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './CharacterPage.scss';
 import { useQuery } from '@apollo/client';
 import { GET_CHARACTER } from '../../utils/queries';
-import { Loader } from '../../components/Loader';
-import { CharacterCard } from '../../components/CharacterCard';
-import { Error } from '../../components/Error';
 import { useDispatch } from 'react-redux';
 import { updateHistory } from '../../features/history';
 import { setIsSpecificCharacter } from '../../features/characters';
+import { Loader } from '../../components/Loader';
+import { CharacterCard } from '../../components/CharacterCard';
+import { Error } from '../../components/Error';
+import './CharacterPage.scss';
 
 export const CharacterPage = () => {
   const dispatch = useDispatch();
@@ -26,15 +26,13 @@ export const CharacterPage = () => {
       const { name } = character;
 
       if (name) {
-        dispatch(
-          updateHistory({
-            keyWords: '',
-            characters: '',
-            location: '',
-            episode: '',
-            name,
-          })
-        );
+        dispatch(updateHistory({
+          keyWords: '',
+          characters: '',
+          location: '',
+          episode: '',
+          name,
+        }));
       }
     }
   }, [loading, error, data, dispatch]);
@@ -65,4 +63,4 @@ export const CharacterPage = () => {
       </div>
     </section>
   );
-};
+}

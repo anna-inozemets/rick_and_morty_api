@@ -1,8 +1,8 @@
 import React from 'react';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { setIsHistoryVisible } from '../../features/history';
 import { useDispatch, useSelector } from 'react-redux';
+import { setIsHistoryVisible } from '../../features/history';
 import { RootState } from '../../app/store';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 export const HistoryButton = () => {
   const dispatch = useDispatch();

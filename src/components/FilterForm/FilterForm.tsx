@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchCharactersIds,
-  setNormalizedCharactersIds,
-  setIsFormVisible
-} from '../../features/formFilter';
+import { fetchCharactersIds, setNormalizedCharactersIds, setIsFormVisible } from '../../features/formFilter';
 import { fetchCharacersById, setCount } from '../../features/characters';
-import { RootState, AppDispatch } from '../../app/store';
-import classNames from 'classnames';
-import { LoadingOutlined } from '@ant-design/icons';
-import { areValuesEmpty } from '../../utils/helpers';
-import './FilterForm.scss';
-import { Error } from '../Error';
+import { setPage } from '../../features/pagination';
 import { updateHistory } from '../../features/history';
-
+import { RootState, AppDispatch } from '../../app/store';
+import { areValuesEmpty, historyValidator } from '../../utils/helpers';
+import { LoadingOutlined } from '@ant-design/icons';
+import classNames from 'classnames';
+import { Formik, Form } from 'formik';
+import { Error } from '../Error';
 import { FilterSelect } from '../FilterSelect';
 import { FilterInputsGroup } from '../FilterInputsGroup';
-
-import { Formik, Form } from 'formik';
+import './FilterForm.scss';
 
 export const FilterForm = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -111,15 +106,11 @@ export const FilterForm = () => {
 
     dispatch(updateHistory({
       keyWords: query,
-      characters: [characterName, characterStatus, characterSpecies, characterType, characterGender]
-        .filter((value: string) => value.length !== 0)
-        .join(', '),
-      location: [locationName, locationType, locationDimension]
-        .filter((value: string) => value.length !== 0)
-        .join(', '),
-      episode: [episodeName, episodeEpisode]
-        .filter((value: string) => value.length !== 0)
-        .join(', '),
+      characters: historyValidator([
+        characterName, characterStatus, characterSpecies, characterType, characterGender
+      ]),
+      location: historyValidator([locationName, locationType, locationDimension]),
+      episode: historyValidator([episodeName, episodeEpisode]),
       name: '',
     }));
   };
@@ -154,6 +145,7 @@ export const FilterForm = () => {
       dispatch(setNormalizedCharactersIds(normalizedCominedCaractersIds));
       dispatch(fetchCharacersById(normalizedCominedCaractersIds));
       dispatch(setIsFormVisible(false))
+      dispatch(setPage(1))
     }
 
     if (combinedCharacterIds.length === 0 && !isButtonDisabled) {
@@ -200,4 +192,4 @@ export const FilterForm = () => {
       )}
     </Formik>
   )
-};
+}

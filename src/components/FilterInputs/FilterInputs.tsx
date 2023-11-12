@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './FilterInputs.scss';
-
 import { CharacterQuery, LocationQuery, EpisodeQuery, WordsQuery } from '../../utils/types';
+import './FilterInputs.scss';
 
 type Props = {
   inputs: { id: string, key: string, placeholder: string }[];
@@ -12,6 +11,7 @@ type Props = {
 
 export const FilterInputs: React.FC<Props> = ({ inputs, updateValues, values }) => {
   const dispatch = useDispatch();
+
   const handleInputValuesChanges = (
     key: string,
     event: React.ChangeEvent<HTMLInputElement>,

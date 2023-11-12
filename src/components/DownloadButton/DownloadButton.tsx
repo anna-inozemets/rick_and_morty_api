@@ -1,11 +1,12 @@
 import React from 'react';
-import { DownloadOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
+import { DownloadOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 
 export const DownloadButton = () => {
   const { charactersToRender, isSpecificCharacter } = useSelector((state: RootState) => state.characters);
+
   const handleDownload = () => {
     if (!isSpecificCharacter) {
       const csvRows = charactersToRender.map(characterToRender => {

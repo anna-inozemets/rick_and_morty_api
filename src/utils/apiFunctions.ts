@@ -13,7 +13,7 @@ export const fetchCharacers = async (page: number) => {
   } catch (error) {
     return;
   }
-};
+}
 
 export const fetchCharacersIds = async (variables: FilterVariables) => {
   try {
@@ -55,7 +55,7 @@ export const fetchCharacersIds = async (variables: FilterVariables) => {
   } catch (error) {
     console.error(error)
   }
-};
+}
 
 export const fetchCharacersById = async (ids: number[]) => {
   try {

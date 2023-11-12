@@ -1,8 +1,8 @@
 import React from 'react';
-import './History.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import { setIsHistoryVisible } from '../../features/history';
+import { RootState } from '../../app/store';
+import './History.scss';
 
 export const History = () => {
   const dispatch = useDispatch();

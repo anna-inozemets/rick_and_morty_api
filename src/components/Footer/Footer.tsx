@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.scss';
-import IncodeLogo from '../../images/logo--incode.svg';
 import { GithubFilled, TwitterOutlined, HeartFilled } from '@ant-design/icons';
+import IncodeLogo from '../../images/logo--incode.svg';
+import './Footer.scss';
 
 export const Footer = () => (
   <footer className="footer">
@@ -28,4 +28,4 @@ export const Footer = () => (
       <p className="footer__year">2023</p>
     </div>
   </footer>
-);
+)

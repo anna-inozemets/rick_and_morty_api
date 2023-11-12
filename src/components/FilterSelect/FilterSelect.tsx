@@ -1,12 +1,12 @@
 import React from 'react';
-import './FilterSelect.scss';
-import { Checkbox } from 'antd';
-import type { CheckboxChangeEvent } from 'antd/es/checkbox';
-import { CaretDownOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOptionVisibility, updateOptionsSelected } from '../../features/formFilter';
 import { RootState } from '../../app/store';
+import { Checkbox } from 'antd';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
+import { CaretDownOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
+import './FilterSelect.scss';
 
 export const FilterSelect = () => {
   const dispatch = useDispatch();

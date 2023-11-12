@@ -1,14 +1,19 @@
 import React from 'react';
-import { FilterInputs } from '../FilterInputs';
-import { wordsInput, characterInputs, locationInputs, episodesInputs } from '../../utils/helpers';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import {
   updateCharacters,
   updateLocations,
   updateEpisodes,
   updateWords,
 } from '../../features/formFilter';
+import {
+  wordsInput,
+  characterInputs,
+  locationInputs,
+  episodesInputs,
+} from '../../utils/helpers';
+import { RootState } from '../../app/store';
+import { FilterInputs } from '../FilterInputs';
 
 export const FilterInputsGroup = () => {
   const {

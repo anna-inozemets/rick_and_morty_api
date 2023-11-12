@@ -22,13 +22,8 @@ export const fetchCharacters = createAsyncThunk(
 
       const data = await fetchCharacersHelper(page);
 
-      dispatch(setCharacters(data.results));
-
-      dispatch(setCharactersToRender({
-        data: data.results,
-        page,
-      }));
-
+      dispatch(setCharacters(data.results))
+      dispatch(setCharactersToRender({ data: data.results, page }));
       dispatch(setCount(data.info.count));
 
       return data;
@@ -75,11 +70,15 @@ const charactersSlice = createSlice({
     },
     setCharactersToRender: (state, action) => {
       const { data, page } = action.payload;
-    
-      const startIndex = (page - 1) * 20;
-      const endIndex = startIndex + 20;
-    
-      state.charactersToRender = data.slice(startIndex, endIndex);
+
+      if (data.length > 20) {
+        const startIndex = (page - 1) * 20;
+        const endIndex = startIndex + 20;
+      
+        state.charactersToRender = data.slice(startIndex, endIndex);
+      } else {
+        state.charactersToRender = data;
+      }
     },
     setCount: (state, action) => {
       state.count = action.payload;

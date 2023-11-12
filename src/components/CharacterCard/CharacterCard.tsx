@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
-import './CharacterCard.scss';
 import { Character } from '../../utils/types';
 import { matchColorPoint } from '../../utils/helpers';
+import classnames from 'classnames';
+import './CharacterCard.scss';
 
 type Props = {
   character: Character,

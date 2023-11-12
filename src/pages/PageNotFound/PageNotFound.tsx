@@ -1,7 +1,7 @@
 import React from 'react';
-import './PageNotFound.scss';
-import { RobotOutlined, HomeFilled } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import { RobotOutlined, HomeFilled } from '@ant-design/icons';
+import './PageNotFound.scss';
 
 export const PageNotFound = () => (
   <article className="section section--not-found not-found">

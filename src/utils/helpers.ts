@@ -9,27 +9,30 @@ export const matchColorPoint = (status: string) => {
   default:
     return '#9e9e9e';
   }
-};
+}
 export const areValuesEmpty = (...args: string[]) => (
   args.every(item => item.length === 0)
-);
+)
+export const historyValidator = (values: string[]) => (
+  values.filter((value: string) => value.length !== 0).join(', ')
+)
 
 export const wordsInput = [
   { id: 'keyQuery', key: 'query', placeholder: 'Add key words to find' }
-];
+]
 export const characterInputs = [
   { id: 'characterName', key: 'name', placeholder: 'Add Character Name' },
   { id: 'characterStatus', key: 'status', placeholder: 'Add Character Status' },
   { id: 'characterSpecies', key: 'species', placeholder: 'Add Character Species' },
   { id: 'characterType', key: 'type', placeholder: 'Add Character Type' },
   { id: 'characterGender', key: 'gender', placeholder: 'Add Character gender' }
-];
+]
 export const locationInputs = [
   { id: 'locationName', key: 'name', placeholder: 'Add Location Name' },
   { id: 'locationType', key: 'type', placeholder: 'Add Location Type' },
   { id: 'locationDimension', key: 'dimension', placeholder: 'Add Location Dimension' },
-];
+]
 export const episodesInputs = [
   { id: 'episodesName', key: 'name', placeholder: 'Add Episode Name' },
   { id: 'episodes', key: 'episodes', placeholder: 'Add Episodes' },
-];
+]

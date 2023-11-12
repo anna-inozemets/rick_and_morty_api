@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './FabButton.scss';
 import { EllipsisOutlined, CloseOutlined } from '@ant-design/icons';
 import { HistoryButton } from '../HistoryButton';
 import { DownloadButton } from '../DownloadButton';
+import './FabButton.scss';
 
 export const FabButton = () => {
   const [isButtonsVisible, setIsButtonVisible] = useState(false);

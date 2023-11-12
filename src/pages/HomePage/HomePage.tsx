@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react';
-import './HomePage.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPage } from '../../features/pagination';
 import { AppDispatch, RootState } from '../../app/store';
-import { Pagination, Row, Col } from 'antd';
+import { setPage } from '../../features/pagination';
+import { fetchCharacters, setCharactersToRender, setIsSpecificCharacter } from '../../features/characters';
+import { resetFilters } from '../../features/formFilter';
 import { CharacterCard } from '../../components/CharacterCard';
-import { Character } from '../../utils/types';
 import { Loader } from '../../components/Loader';
 import { Error } from '../../components/Error';
 import { Filter } from '../../components/Filter';
-import { fetchCharacters, setCharactersToRender, setIsSpecificCharacter } from '../../features/characters';
+import { Pagination, Row, Col } from 'antd';
 import { MehOutlined } from '@ant-design/icons';
-import { resetFilters } from '../../features/formFilter';
+import { Character } from '../../utils/types';
+import './HomePage.scss';
+
 
 export const HomePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { page } = useSelector((state: RootState) => state.pagination);
-  const { characters, charactersToRender, count, loading, error } = useSelector((state: RootState) => state.characters);
+  const {
+    characters,
+    charactersToRender,
+    count,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.characters);
   const { normalizedCharactersIds } = useSelector((state: RootState) => state.formFilter);
 
   useEffect(() => {
@@ -29,10 +36,7 @@ export const HomePage = () => {
     if (normalizedCharactersIds !== null && normalizedCharactersIds.length === 0) {
       dispatch(fetchCharacters(page));
     } else {
-      dispatch(setCharactersToRender({
-        data: characters,
-        page,
-      }));
+      dispatch(setCharactersToRender({ data: characters, page }));
     }
   }, [page, characters, normalizedCharactersIds]);
 
@@ -74,4 +78,4 @@ export const HomePage = () => {
       </div>
     </section>
   )
-};
+}

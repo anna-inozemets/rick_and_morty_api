@@ -1,12 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import {
-  FormState,
-  CharacterQuery,
-  LocationQuery,
-  EpisodeQuery,
-  WordsQuery,
-  FilterVariables
-} from '../utils/types';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { FormState, FilterVariables } from '../utils/types';
 import { fetchCharacersIds as fetchCharacersIdsHelper } from '../utils/apiFunctions';
 
 const initialState: FormState = {
@@ -56,10 +49,10 @@ const formFilterSlice = createSlice({
     setIsFormVisible: (state, action) => {
       state.isFormVisible = action.payload;
     },
-    setOptionVisibility(state, action: PayloadAction<boolean>) {
+    setOptionVisibility: (state, action) => {
       state.isOptionVisible = action.payload;
     },
-    updateOptionsSelected(state, action: PayloadAction<string[]>) {
+    updateOptionsSelected: (state, action) => {
       state.currentOptionsSelected = action.payload;
 
       const shouldResetCharacters = !action.payload.includes('character');
@@ -78,21 +71,19 @@ const formFilterSlice = createSlice({
         state.episodes = initialState.episodes;
       }
     },
-    updateCharacters: (state, action: PayloadAction<CharacterQuery>) => {
+    updateCharacters: (state, action) => {
       state.characters = action.payload;
     },
-    updateLocations: (state, action: PayloadAction<LocationQuery>) => {
+    updateLocations: (state, action) => {
       state.locations = action.payload;
     },
-    updateEpisodes: (state, action: PayloadAction<EpisodeQuery>) => {
+    updateEpisodes: (state, action) => {
       state.episodes = action.payload;
     },
-    updateWords: (state, action: PayloadAction<WordsQuery>) => {
+    updateWords: (state, action) => {
       state.words = action.payload;
     },
-    resetFilters() {
-      return initialState;
-    },
+    resetFilters: () => (initialState),
     setCharactersIds: (state, action) => {
       state.charactersIds = action.payload;
     },
