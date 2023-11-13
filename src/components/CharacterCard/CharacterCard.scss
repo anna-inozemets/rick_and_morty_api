@@ -71,7 +71,8 @@
 }
 
 @media screen and (max-width: 990px) {
-  :where(.css-dev-only-do-not-override-2i2tap).ant-col {
+  :where(.css-dev-only-do-not-override-2i2tap).ant-col,
+  :where(.css-2i2tap).ant-col {
     min-width: 100%;
   }
 }
